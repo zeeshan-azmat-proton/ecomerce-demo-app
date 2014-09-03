@@ -22,12 +22,10 @@ class CategoriesController < ApplicationController
   end
 
 
+
   def edit
     @category = Category.find(params[:id])
   end
-
-
-
 
   def update
     @category = Category.find(params[:id])
@@ -38,6 +36,7 @@ class CategoriesController < ApplicationController
       render 'edit'
     end
   end
+
 
   def destroy
     @category = Category.find(params[:id])

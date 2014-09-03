@@ -3,7 +3,7 @@ EcomerceDemoApp::Application.routes.draw do
 
   # get "items/index"
 
-  # devise_for :users
+  devise_for :users
 
   # get "categories/new"
   # post "categories/new"
