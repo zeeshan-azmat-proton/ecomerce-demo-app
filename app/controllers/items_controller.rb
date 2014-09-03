@@ -7,13 +7,17 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @categories = Category.all
   end
 
 
   def create
     @item = Item.new(params[:item])
-    @item.save
-    redirect_to @item
+    if @item.save
+      redirect_to @item
+    else
+      render 'new'
+    end
   end
 
 
@@ -25,6 +29,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @categories = Category.all
   end
 
   def update
@@ -40,8 +45,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-
     @item.destroy
+    
     redirect_to items_path
   end
 

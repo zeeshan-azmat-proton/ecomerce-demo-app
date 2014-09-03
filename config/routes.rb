@@ -1,15 +1,11 @@
 EcomerceDemoApp::Application.routes.draw do
-  # get "categories/index"
-
-  # get "items/index"
-
+  
   devise_for :users
-
-  # get "categories/new"
-  # post "categories/new"
 
   resources :categories
   resources :items
+  # match 'items/index', to: 'items#index', as: 'items'
+  # match 'categories/index', to: 'categories#index', as: 'categories'
 
   # resources :categories do
   #   resources :items

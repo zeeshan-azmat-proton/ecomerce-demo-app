@@ -1,11 +1,16 @@
+<div class="row">
+  <%= link_to "Add New Item" , new_item_path , class: "btn btn-info" %>
+</div>
+
 <h1>Listing Items</h1>
-<h4><%= link_to "List all Items" , items_path %></h4>
+<h4><%= link_to "List all Categories" , categories_path %></h4>
  
 <table class="table">
   <tr>
     <th>Item id</th>
     <th>Item Category</th>
     <th>Name</th>
+    <th>Price</th>
     <th>Show</th>
     <th>Edit</th>
     <th>Delete</th>
@@ -15,8 +20,9 @@
   <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= "item.category.name" %></td>
+      <td><%= "#{item.category_id} - #{item.category.try(:name) || 'NA'}" %></td>
       <td><%= item.name %></td>
+      <td><%= item.price %></td>
       <td><%= link_to 'Show', item_path(item) %></td>
       <td><%= link_to 'Edit', edit_item_path(item) %></td>  
       <td><%= link_to 'Delete', item_path(item) , method: :delete %></td>

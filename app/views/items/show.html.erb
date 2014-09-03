@@ -1,16 +1,22 @@
 <h1>Listing Items</h1>
 <h4><%= link_to "List all Items" , items_path %></h4>
- 
+
 <table class="table">
   <tr>
     <th>Item id</th>
     <th>Category Name</th>
     <th>Item Name</th>
+    <th>Item Price</th>
+    <th>Edit</th>
+    <th>Destroy</th>
   </tr>
  
   <tr>
     <td><%= @item.id %></td>
-    <td><%= "@item.category.name" %></td>
+    <td><%= @item.category.try(:name) || "No Name" %></td>
     <td><%= @item.name %></td>
+    <td><%= @item.price %></td>
+    <td><%= link_to 'Edit', edit_item_path(@item) %></td>  
+    <td><%= link_to 'Delete', item_path(@item) , method: :delete %></td>  
   </tr> 
 </table>

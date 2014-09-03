@@ -12,10 +12,6 @@
   <div class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-        
-    <div class="row">
-      <%= link_to "Add New Category" , categories_new_path , class: "btn btn-info" %> or <%= link_to "Add New Item" , items_new_path , class: "btn btn-info" %>
-    </div>
     
     <div id="user_nav" class="pull-right">
       <% if user_signed_in? %>
