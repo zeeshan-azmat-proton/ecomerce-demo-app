@@ -1,0 +1,14 @@
+<h1>Listing Categories</h1>
+<h4><%= link_to "List all Categories" , categories_path %></h4>
+ 
+<table class="table">
+  <tr>
+    <th>Category id</th>
+    <th>Name</th>
+  </tr>
+ 
+  <tr>
+    <td><%= @category.id %></td>
+    <td><%= @category.name %></td>
+  </tr>
+</table>

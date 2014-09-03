@@ -1,0 +1,22 @@
+<h1>Listing Categories</h1>
+<h4><%= link_to "List all Items" , items_index_path %></h4>
+ 
+<table class="table">
+  <tr>
+    <th>Category id</th>
+    <th>Name</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
+ 
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.id %></td>
+      <td><%= category.name %></td>
+      <td><%= link_to 'Show', category_path(category) %></td>
+      <td><%= link_to 'Edit', edit_category_path(category) %></td>  
+      <td><%= link_to 'Delete', category_path(category) , method: :delete %></td>  
+    </tr>
+  <% end %>
+</table>

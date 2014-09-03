@@ -1,0 +1,14 @@
+<h1>Listing Items</h1>
+<h4><%= link_to "List all Items" , items_path %></h4>
+ 
+<table class="table">
+  <tr>
+    <th>Item id</th>
+    <th>Name</th>
+  </tr>
+ 
+  <tr>
+    <td><%= @item.id %></td>
+    <td><%= @item.name %></td>
+  </tr>
+</table>

@@ -1,4 +1,20 @@
 EcomerceDemoApp::Application.routes.draw do
+  # get "categories/index"
+
+  # get "items/index"
+
+  # devise_for :users
+
+  # get "categories/new"
+  # post "categories/new"
+
+  resources :categories
+  resources :items
+
+  # resources :categories do
+  #   resources :items
+  # end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +64,7 @@ EcomerceDemoApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'categories#index'
 
   # See how all your routes lay out with "rake routes"
 

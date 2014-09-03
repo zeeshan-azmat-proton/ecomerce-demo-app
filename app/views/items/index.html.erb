@@ -1,0 +1,20 @@
+<h1>Listing Items</h1>
+<h4><%= link_to "List all Items" , items_path %></h4>
+ 
+<table class="table">
+  <tr>
+    <th>Item id</th>
+    <th>Item Category</th>
+    <th>Name</th>
+    <th>Add</th>
+  </tr>
+ 
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.category %></td>
+      <td><%= item.name %></td>
+      <td><%= link_to "Add to cart" , "#"  , class: "btn btn-info" %></td>
+    </tr>
+  <% end %>
+</table>
