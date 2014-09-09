@@ -1,8 +1,6 @@
 <div class="row">
   <% if can? :create, @item %>
     <%= link_to "Add New Item" , new_item_path , class: "btn btn-info" %>
-  <% else %>
-    <%= link_to "Can't Create Item" , '' , class: "btn btn-info" , disabled: "disabled" %>
   <% end %>
 </div>
 

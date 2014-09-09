@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @categories = Category.all
+    authorize! :create, @item
   end
 
 
@@ -31,6 +32,7 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     @categories = Category.all
+    authorize! :update, @item
   end
 
   def update
@@ -47,7 +49,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    
+    authorize! :destroy, @item    
     redirect_to items_path
   end
 

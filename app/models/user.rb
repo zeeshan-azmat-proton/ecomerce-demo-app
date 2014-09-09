@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  after_create :assign_default_role
+
+  def assign_default_role
+    add_role(:user)
+  end
+
 end

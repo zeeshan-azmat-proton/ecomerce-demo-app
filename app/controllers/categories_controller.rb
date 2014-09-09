@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize! :create, @category
   end
 
 
@@ -28,6 +29,7 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    authorize! :update, @category
   end
 
   def update
@@ -44,7 +46,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-   
+    authorize! :destroy, @category
     redirect_to categories_path
   end
    
