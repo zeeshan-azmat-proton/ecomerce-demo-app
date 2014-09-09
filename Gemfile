@@ -10,7 +10,7 @@ gem 'rails', '3.2.3'
 gem 'pg'
 gem 'devise', '~>2.1.1'
 gem 'cancan'
-gem 'rolify'
+gem "rolify",        :git => "git://github.com/EppO/rolify.git"
 
 # Gems used only for assets and not required
 # in production environments by default.

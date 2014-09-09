@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to @item
     else
+      @categories = Category.all
       render 'new'
     end
   end

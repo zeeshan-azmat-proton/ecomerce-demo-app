@@ -12,7 +12,19 @@
   <tr>
     <td><%= @category.id %></td>
     <td><%= @category.name %></td>
-    <td><%= link_to 'Edit', edit_category_path(@category) %></td>  
-    <td><%= link_to 'Delete', category_path(@category) , method: :delete %></td>  
+    <td>
+      <% if can? :update, @category %>
+        <%= link_to 'Edit', edit_category_path(@category) %>
+      <% else %>
+        Can't edit
+      <% end %>
+    </td>
+    <td>
+      <% if can? :destroy, @category %>
+        <%= link_to 'Delete', category_path(@category) , method: :delete %>
+      <% else %>
+        Can't edit
+      <% end %>
+    </td>  
   </tr>
 </table>

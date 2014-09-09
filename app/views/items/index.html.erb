@@ -1,5 +1,9 @@
 <div class="row">
-  <%= link_to "Add New Item" , new_item_path , class: "btn btn-info" %>
+  <% if can? :create, @item %>
+    <%= link_to "Add New Item" , new_item_path , class: "btn btn-info" %>
+  <% else %>
+    <%= link_to "Can't Create Item" , '' , class: "btn btn-info" , disabled: "disabled" %>
+  <% end %>
 </div>
 
 <h1>Listing Items</h1>
@@ -24,8 +28,20 @@
       <td><%= item.name %></td>
       <td><%= item.price %></td>
       <td><%= link_to 'Show', item_path(item) %></td>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>  
-      <td><%= link_to 'Delete', item_path(item) , method: :delete %></td>
+      <td>
+        <% if can? :update, item %>
+          <%= link_to 'Edit', edit_item_path(item) %>
+        <%else%>
+          Can't update
+        <% end %>
+      </td>
+      <td>
+        <% if can? :destroy, item %>
+          <%= link_to 'Delete', item_path(item) , method: :delete %>
+        <%else%>
+          Can't destroy
+        <% end %>
+      </td>
       <td><%= link_to "Add to cart" , "#"  , class: "btn btn-info" %></td>
     </tr>
   <% end %>

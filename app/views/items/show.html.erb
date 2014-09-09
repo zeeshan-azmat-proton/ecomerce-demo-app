@@ -16,7 +16,20 @@
     <td><%= @item.category.try(:name) || "No Name" %></td>
     <td><%= @item.name %></td>
     <td><%= @item.price %></td>
-    <td><%= link_to 'Edit', edit_item_path(@item) %></td>  
-    <td><%= link_to 'Delete', item_path(@item) , method: :delete %></td>  
+    <td>
+      <% if can? :update, @item %>
+        <%= link_to 'Edit', edit_item_path(@item) %>
+      <%else%>
+        Can't update
+      <% end %>
+    </td>
+    <td>
+      <% if can? :destroy, @item %>
+        <%= link_to 'Delete', item_path(@item) , method: :delete %>
+      <%else%>
+        Can't destroy
+      <% end %>
+    </td>
+
   </tr> 
 </table>
