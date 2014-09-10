@@ -10,16 +10,14 @@
   <tr>
     <th>Category id</th>
     <th>Name</th>
-    <th>Show</th>
-    <th>Edit</th>
-    <th>Destroy</th>
+    <th></th>
+    <th></th>
   </tr>
  
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.id %></td>
       <td><%= category.name %></td>
-      <td><%= link_to 'Show', category_path(category) %></td>
       <td>
         <% if can? :update, category %>
           <%= link_to 'Edit', edit_category_path(category) %>

@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(params[:item])
     if @item.save
-      redirect_to @item
+      redirect_to action: :index
     else
       @categories = Category.all
       render 'new'
@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     if @item.update_attributes(params[:item])
-      redirect_to @item
+      redirect_to action: :index
     else
       render 'edit'
     end

@@ -1,9 +1,12 @@
 EcomerceDemoApp::Application.routes.draw do
   
+  get "carts/show"
+
   devise_for :users
 
   resources :categories
   resources :items
+
   # match 'items/index', to: 'items#index', as: 'items'
   # match 'categories/index', to: 'categories#index', as: 'categories'
 
