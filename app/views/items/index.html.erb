@@ -26,11 +26,14 @@
       <td><%= link_to 'Delete', item_path(item), method: :delete, confirm: "Are you sure?" if can? :destroy, item %></td>
       <td>
         <% if user_signed_in? %>
-          <%= link_to "Add to cart", '', class: "btn btn-info" unless can? :create, item %>
+          <%= link_to "Add to cart", cart_items_add_to_cart_path(item), method: :post, class: "btn btn-info" unless can? :create, item %>
         <%else%>
-          <%= link_to "Add to cart", new_user_session_path , class: "btn btn-info" unless can? :create, item %>
+          <%= link_to "Add to cart", new_user_session_path, class: "btn btn-info" unless can? :create, item %>
         <%end%>
       </td>
     </tr>
   <% end %>
 </table>
+
+<%= link_to "Add to cart", cart_items_path, class: "btn btn-large" if user_signed_in? and current_user.has_role? :user and can? :create, CartItem %>
+

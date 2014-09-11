@@ -19,18 +19,10 @@
       <td><%= category.id %></td>
       <td><%= category.name %></td>
       <td>
-        <% if can? :update, category %>
-          <%= link_to 'Edit', edit_category_path(category) %>
-        <% else %>
-          Can't edit
-        <% end %>
+        <%= link_to 'Edit', edit_category_path(category) if can? :update, category %>
       </td>
       <td>
-        <% if can? :destroy, category %>
-          <%= link_to 'Delete', category_path(category) , method: :delete %>
-        <% else %>
-          Can't edit
-        <% end %>
+        <%= link_to 'Delete', category_path(category) , method: :delete if can? :destroy, category %>
       </td>  
     </tr>
   <% end %>

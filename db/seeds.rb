@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-  user = User.create!(email: 'admin@gmail.com' , password: 'admin123')
+  user = User.create!(email: 'admin@admin.com' , password: 'admin123')
   user.add_role :admin

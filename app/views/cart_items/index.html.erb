@@ -1,0 +1,17 @@
+<h1>Listing Your Cart Items</h1>
+ 
+<table class="table">
+  <tr>
+    <th>Item Number</th>
+    <th>Name</th>
+  </tr>
+ 
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item.item_id %></td>
+      <td><%= cart_item.item.name %></td>
+      <td><%= link_to 'Delete', cart_item_path(cart_item) , method: :delete %></td>
+    </tr>
+  <% end %>
+
+</table>

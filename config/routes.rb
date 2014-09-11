@@ -7,6 +7,11 @@ EcomerceDemoApp::Application.routes.draw do
   resources :categories
   resources :items
 
+  resources :cart_items
+
+  match "cart_items/add_to_cart", to: "cart_items#add_to_cart", via: "post"
+  # match "cart_items/checkout_cart", to: "cart_items#checkout_cart"
+
   # match 'items/index', to: 'items#index', as: 'items'
   # match 'categories/index', to: 'categories#index', as: 'categories'
 
