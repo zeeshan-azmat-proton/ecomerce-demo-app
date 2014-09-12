@@ -1,0 +1,24 @@
+%h1 Listing Items
+%h4
+  = link_to items_path, class: "btn btn-success" do
+    %i.icon-share-alt.icon-white
+    Go Back
+%table.table
+  %tr
+    %th Category Name
+    %th Item Name
+    %th Item Price
+    %th
+  %tr
+    %td= @item.category.try(:name) || "No Name"
+    %td= @item.name
+    %td= @item.price
+    %td
+      - if can? :update, @item
+        = link_to edit_item_path(@item), class: "btn" do
+          %i.icon-share-alt.icon-white
+          Edit
+      - if can? :destroy, @item
+        = link_to item_path(@item) , method: :delete, class: "btn btn-danger" do
+          %i.icon-share-alt.icon-white
+          Delete

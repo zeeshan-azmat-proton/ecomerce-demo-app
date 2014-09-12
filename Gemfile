@@ -11,6 +11,7 @@ gem 'pg'
 gem 'devise', '~>2.1.1'
 gem 'cancan'
 gem "rolify",        :git => "git://github.com/EppO/rolify.git"
+gem 'haml-rails', '>= 0.3.4', :group => :development
 
 # Gems used only for assets and not required
 # in production environments by default.

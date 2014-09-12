@@ -1,0 +1,25 @@
+%h2 Listing Categories
+%ul.nav.nav-pills
+  %li.active
+    = link_to "All Items", ''
+  - if can? :create, @category
+    %li
+      = link_to "Add New Category", new_category_path
+  %li
+    = link_to "List all Items", items_path
+  %li
+    = link_to "List all Orders", carts_path if can? :update, Category
+%table.table.table-bordered.table-hover
+  %tr
+    %th Category id
+    %th Name
+    %th
+    %th
+  - @categories.each do |category|
+    %tr
+      %td= category.id
+      %td= category.name
+      %td
+        = link_to 'Edit', edit_category_path(category) if can? :update, category
+      %td
+        = link_to 'Delete', category_path(category), method: :delete if can? :destroy, category

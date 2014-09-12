@@ -1,0 +1,22 @@
+%h2 Previous Orders
+%ul.nav.nav-pills
+  %li.active
+    = link_to "Previous Orders", ''
+  %li
+    = link_to "View cart", cart_items_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+  %li
+    = link_to "List all Categories", categories_path
+  %li
+    = link_to "Add New Item", new_item_path if can? :create, Item
+  %li
+    = link_to "List all Orders", carts_path if can? :update, Category
+%table.table.table-bordered.table-hover
+  %tr
+    %th Order Number
+    %th Total Price
+    %th Created at
+  - @orders.each do |order|
+    %tr
+      %td= order.id
+      %td= order.bill
+      %td= order.created_at

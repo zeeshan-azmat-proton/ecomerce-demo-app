@@ -8,9 +8,12 @@ EcomerceDemoApp::Application.routes.draw do
   resources :items
 
   resources :cart_items
+  resources :carts
 
-  match "cart_items/add_to_cart", to: "cart_items#add_to_cart", via: "post"
-  # match "cart_items/checkout_cart", to: "cart_items#checkout_cart"
+  match "cart_items/add_to_cart/:id", to: "cart_items#add_to_cart", as: "add_to_cart", via: "post"
+  match "carts/confirm/:id", to: "carts#confirm", as: "confirm_order"
+  match "cart/checkout", to: "carts#checkout", as: "checkout"
+  match "cart/previous_orders", to: "carts#previous_orders", as: "previous_orders"
 
   # match 'items/index', to: 'items#index', as: 'items'
   # match 'categories/index', to: 'categories#index', as: 'categories'

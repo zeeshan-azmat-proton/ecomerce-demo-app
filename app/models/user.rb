@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :cart_itmes
+  has_many :carts
   has_many :items, :through => :cart_itmes
 
  

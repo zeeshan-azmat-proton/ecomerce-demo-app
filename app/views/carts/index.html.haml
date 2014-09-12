@@ -1,0 +1,23 @@
+%h2 Listing All Orders
+%ul.nav.nav-pills
+  %li.active
+    = link_to "Orders List", ''
+  %li
+    = link_to "List all Categories", categories_path
+  %li
+    = link_to "List all Items", items_path
+%table.table.table-bordered.table-hover
+  %tr
+    %th Order id
+    %th Name
+    %th Bill
+    %th Status
+    %th
+  - @orders.each do |order|
+    %tr
+      %td= order.id
+      %td= order.user.email
+      %td= order.bill
+      %td= order.status
+      %td
+        = link_to 'Confirm', confirm_order_path(order) if can? :update, order

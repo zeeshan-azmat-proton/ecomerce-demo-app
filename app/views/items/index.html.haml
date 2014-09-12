@@ -1,0 +1,33 @@
+%h2 Listing Items
+%ul.nav.nav-pills
+  %li.active
+    = link_to "All Items", ''
+  %li
+    = link_to "View cart", cart_items_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+  %li
+    = link_to "List all Categories", categories_path
+  %li
+    = link_to "Add New Item", new_item_path if can? :create, @item
+  %li
+    = link_to "List all Orders", carts_path if can? :update, Category
+%table.table.table-bordered.table-hover
+  %tr
+    %th Category
+    %th Name
+    %th Price
+    %th
+    %th
+    %th
+    %th
+  - @items.each do |item|
+    %tr
+      %td= "#{item.category.try(:name) || 'NA'}"
+      %td= item.name
+      %td= item.price
+      %td= link_to "Show", item_path(item)
+      %td= link_to 'Edit', edit_item_path(item) if can? :update, item
+      %td= link_to 'Delete', item_path(item), method: :delete, confirm: "Are you sure?" if can? :destroy, item
+      - if user_signed_in?
+        %td= link_to "Add to cart", add_to_cart_path(item), method: :post unless can? :create, item
+      - else
+        %td= link_to "Add to cart", new_user_session_path unless can? :create, item
