@@ -11,7 +11,11 @@ class CartItemsController < ApplicationController
     @cart_item.item_id = params[:id]
     
     @cart_item.save
-    redirect_to items_url
+    # respond_to do |format|
+    #   format.json { head :ok }
+    # end
+    return render json: {status: "success"}
+    # redirect_to items_url
   end
 
   def destroy

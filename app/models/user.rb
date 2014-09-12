@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
   has_many :items, :through => :cart_itmes
 
  
-  # after_create :assign_default_role
-  # protected
-  #   def assign_default_role
-  #     add_role(:user)
-  #   end
+  after_create :assign_default_role
+  protected
+    def assign_default_role
+      add_role(:user)
+    end
 
 end
