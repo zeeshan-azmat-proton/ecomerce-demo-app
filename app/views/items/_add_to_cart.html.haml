@@ -1,0 +1,17 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} &times;
+        %span.sr-only
+      %h3#myModalLabel.modal-title Add to cart
+    .modal-body
+      %h4.row= @item.name
+      %h4.row= @item.price
+      %h6.row= @item.category.try(:name) || "No Name"
+
+    .modal-footer
+      %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+      - #= link_to "Add to cart", add_to_cart_path(item), class: "add_item_button btn btn-info btn-small"
+      = link_to "Add to cart", add_to_cart_path(item), class: "add_item_button btn btn-info"
+      

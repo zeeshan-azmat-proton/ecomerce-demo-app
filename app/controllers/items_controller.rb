@@ -25,8 +25,10 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    if params[:ajax]
+      return render partial: 'add_to_cart', locals: { item: @item }
+    end
   end
-
 
 
   def edit

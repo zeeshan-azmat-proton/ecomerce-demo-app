@@ -1,22 +1,25 @@
-%h2 Listing Items
+%h2 Items
+
 %ul.nav.nav-pills
+  %li
+    = link_to "All Categories", categories_path
   %li.active
     = link_to "All Items", ''
   %li
-    = link_to "View cart", cart_items_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+    = link_to "Previous Orders", previous_orders_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
   %li
-    = link_to "List all Categories", categories_path
+    = link_to "Orders", carts_path if can? :update, Category
   %li
-    = link_to "Add New Item", new_item_path if can? :create, @item
+    = link_to "New Category", new_category_path if can? :create, @category
   %li
-    = link_to "List all Orders", carts_path if can? :update, Category
-%table.table.table-bordered.table-hover
+    = link_to "New Item", new_item_path if can? :create, @item
+  %li.pull-right
+    = link_to "View cart", cart_items_path, class: "btn btn-info" if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+%table.table.table-bordered.table-hover.table-striped
   %tr
     %th Category
     %th Name
     %th Price
-    %th
-    %th
     %th
     %th
   - @items.each do |item|
@@ -24,10 +27,18 @@
       %td= "#{item.category.try(:name) || 'NA'}"
       %td= item.name
       %td= item.price
-      %td= link_to "Show", item_path(item)
-      %td= link_to 'Edit', edit_item_path(item) if can? :update, item
-      %td= link_to 'Delete', item_path(item), method: :delete, confirm: "Are you sure?" if can? :destroy, item
+      %td
+        = link_to "Show", item_path(item)
+        = link_to 'Edit', edit_item_path(item) if can? :update, item
+        = link_to 'Delete', item_path(item), method: :delete, confirm: "Are you sure?" if can? :destroy, item
       - if user_signed_in?
-        %td= link_to "Add to cart", add_to_cart_path(item), class: "add_item_button", method: :post unless can? :create, item
+        - unless can? :create, item
+          / %td
+          /   %button.btn.btn-info{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Add to Cart
+          / %td= link_to "Add to cart", add_to_cart_path(item), class: "add_item_button btn btn-info btn-small", method: :post
+          %td= link_to "Add to cart", "", id: "#{item.id}", class: "open_add_item_modal btn btn-info btn-small", method: :post
       - else
-        %td= link_to "Add to cart", new_user_session_path unless can? :create, item
+        %td= link_to "Add to cart", new_user_session_path, class: "btn btn-info btn-small" unless can? :create, item
+
+
+#my_modal.modal.hide

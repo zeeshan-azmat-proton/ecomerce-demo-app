@@ -1,18 +1,19 @@
-%h1 Listing Cart Items
+%h2 Cart Items
 - total_price = 0
 - @cart_items.each { |cart_item| total_price += cart_item.item.price }
-%h4
-  Total Price : #{total_price}
+
 %ul.nav.nav-pills
-  %li.active
-    = link_to "Show Cart", '' if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
   %li
-    = link_to "Add more items", items_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+    = link_to "All Categories", categories_path
   %li
-    = link_to "Checkout Cart", checkout_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+    = link_to "All Items", items_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
   %li
     = link_to "Previous Orders", previous_orders_path if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
-%table.table.table-bordered.table-hover
+  %li.active.pull-right
+    = link_to "View Cart", "" if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+  %li.pull-right
+    = link_to "Checkout Cart", checkout_path, class: "btn btn-info" if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+%table.table.table-bordered.table-hover.table-striped
   %tr
     %th Item Number
     %th Name
@@ -24,3 +25,6 @@
       %td= cart_item.item.try(:name)
       %td= cart_item.item.try(:price)
       %td= link_to 'Delete', cart_item_path(cart_item) , method: :delete
+%tr.pull-right
+  %h4
+    Total Price : #{total_price}

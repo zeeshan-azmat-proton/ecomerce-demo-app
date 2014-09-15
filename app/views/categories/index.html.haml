@@ -1,14 +1,18 @@
-%h2 Listing Categories
+%h2 Categories
 %ul.nav.nav-pills
   %li.active
     = link_to "All Categories", ''
   %li
-    = link_to "Add New Category", new_category_path if can? :create, @category
-  %li
     = link_to "All Items", items_path
   %li
-    = link_to "All Orders", carts_path if can? :update, Category
-%table.table.table-bordered.table-hover
+    = link_to "Orders", carts_path if can? :update, Category
+  %li
+    = link_to "New Category", new_category_path if can? :create, @category
+  %li
+    = link_to "New Item", new_item_path if can? :create, @item
+  %li.pull-right
+    = link_to "View cart", cart_items_path, class: "btn btn-primary" if user_signed_in? and current_user.has_role? :user and can? :create, CartItem
+%table.table.table-bordered.table-hover.table-striped
   %tr
     %th Category id
     %th Name
