@@ -13,6 +13,8 @@ gem 'cancan'
 gem "rolify",        :git => "git://github.com/EppO/rolify.git"
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
+gem 'delayed_job_active_record'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

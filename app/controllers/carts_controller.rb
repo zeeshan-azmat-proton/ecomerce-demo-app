@@ -20,13 +20,15 @@ class CartsController < ApplicationController
       total_bill = 0
       @cart_items.each do |cart_item|
         total_bill = total_bill + cart_item.item.price
-        cart_item.destroy
+        #cart_item.destroy
       end
 
-      @cart = Cart.new
-        @cart.user_id = current_user.id
-        @cart.bill = total_bill
-      @cart.save
+      # @cart = Cart.new
+      #   @cart.user_id = current_user.id
+      #   @cart.bill = total_bill
+      # @cart.save
+
+      UserMailer.delay.registration_confirmation#.deliver
 
       redirect_to items_url
     else
